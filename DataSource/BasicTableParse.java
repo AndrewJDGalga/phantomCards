@@ -15,7 +15,6 @@ class BasicTableParse {
     public static void main(String[] args) {
         String fileString = fileContents("skillsRaw2.txt");
         int start = -1, end = -1;
-        ArrayList<Point> positions = new ArrayList<Point>();
         ArrayList<String> sections = new ArrayList<String>();
 
         for(int i = 0; i < fileString.length(); i++) {
@@ -28,16 +27,14 @@ class BasicTableParse {
                     end = i;
                 }
                 if(start != -1 && end != -1) {
-                    positions.add(new Point(start, end));
+                    sections.add(fileString.substring(start, end));
                     start = -1;
                     end = -1;
                 }
             }
         }
 
-        for(int i = 0; i < positions.size(); i++) {
-            
-        }
+        System.out.println(sections.get(0));
     }
 
     public static String removeTags(String original) {
