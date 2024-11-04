@@ -14,7 +14,6 @@ import java.util.ArrayList;
 class BasicTableParse {
     public static void main(String[] args) {
         String fileString = fileContents("skillsRaw2.txt");
-        //int start = 0, end = 0, oldStart = 0, oldEnd = 0;
         int start = -1, end = -1;
         ArrayList<Point> positions = new ArrayList<Point>();
         ArrayList<String> sections = new ArrayList<String>();
@@ -39,72 +38,6 @@ class BasicTableParse {
         for(int i = 0; i < positions.size(); i++) {
             
         }
-
-        /*
-        String example = """
-        <tr class='row-attack'>
-        <td>001</td>
-        <td>Psycho Wave</td>
-        <td>Attack</td>
-        <td>Psycho</td>
-        <td>&nbsp;</td>
-        <td>4</td>
-        <td>X</td>
-        <td>1</td>
-        <td>short</td>
-        <td>4</td>
-        <td>STR = target's Level</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        </tr>""";
-        */
-
-        /*
-        for(int i = 0; i < example.length(); i++) {
-            if(example.charAt(i) == '<') {
-                String slice = example.substring(i, i+4);
-                if(slice.compareTo("<tr ") == 0) {
-                    start = i;
-                }
-                if(slice.compareTo("</tr") == 0) {
-                    end = i;
-                }
-            }
-        }
-            */
-        
-
-        /*
-        for(int i = 0; i < fileString.length(); i++) {
-            if(fileString.charAt(i) == '<') {
-                if(fileString.charAt(i+1) == 't' && fileString.charAt(i+2) == 'r') {
-                    start = i;
-                }
-                else if(fileString.charAt(i+1) == '/' && fileString.charAt(i+2) == 't' && fileString.charAt(i+3) == 'r'){
-                    end = i;
-                    System.out.println(fileString.charAt(i+3));
-                }
-            }
-            
-            if(start > oldStart && end != oldEnd && start <= end) {
-                //System.out.println(fileString.charAt(i));
-                oldStart = start;
-                oldEnd = end;
-            }
-                
-            /*
-            if(start > oldStart && end != oldEnd) {
-                System.out.println("____Section____");
-                System.out.println(fileString.substring(start, end));
-                //System.out.println(start);
-                //System.out.println(end);
-                //System.out.println(fileString.length());
-                System.out.println("____EndSection____");
-                oldStart = start;
-                oldEnd = end;
-            }
-              
-        }*/
     }
 
     public static String removeTags(String original) {

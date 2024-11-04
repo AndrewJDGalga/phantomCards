@@ -11,7 +11,7 @@ My current school work teaches both separately, and it appears there may not be 
 The job market, really. I'm not a big enough fan to use it without forcing myself, and this project is an excuse to force myself.
 
 ## Why XHR instead of Fetch?
-I like how XHR provides a loading status option. Atm, I don't think the Fetch API does.
+I like how XHR provides a loading status option. Atm the Fetch API doesn't.
 
 ## Why Phantom Dust?
 I like the game.
