@@ -41,8 +41,12 @@ class BasicTableParse {
         //System.out.println(sections.get(0));
         Pattern isolateContent = Pattern.compile("(<.*?>)");
         Matcher getContent = isolateContent.matcher(sections.get(0));
-        System.out.println(getContent.replaceAll(","));
-
+        String temp = getContent.replaceAll(",");
+        String chopped = temp.substring(4, temp.length());
+        //System.out.println(chopped);
+        //System.out.println(getContent.replaceAll(","));
+        sections.set(0, chopped);
+        System.out.println(sections.get(0));
         
     }
 
