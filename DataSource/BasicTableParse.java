@@ -17,21 +17,30 @@ class BasicTableParse {
         String fileString = fileContents("skillsRaw2.txt");
         ArrayList<String> sections = getSections(fileString);
         
-        String[] cleaned = new String[sections.size()];
+        String[] noTags = new String[sections.size()];
         
         for(int i = 0; i < sections.size(); i++) {
-            cleaned[i] = removeTags(sections.get(i));
-            System.out.println(cleaned[i]);
+            noTags[i] = removeTags(sections.get(i));
+            System.out.println(noTags[i]);
         }
         
+        /* 
+        for(int i = 0; i < noTags.length; i++){
+            noTags[i] = csvFormatting(noTags[i]);
+            System.out.println(noTags[i]);
+        }
+            */
+
+    }
+
+    public static void writeCSV(String[] src) {
         try (FileWriter writer = new FileWriter("test.csv")) {
-            for(int i = 0; i < cleaned.length; i++) {
-                writer.write(cleaned[i]);
+            for(int i = 0; i < src.length; i++) {
+                writer.write(src[i]);
             }
         } catch (Exception e) {
             System.out.println("Failed with: " + e);
         }
-
     }
 
     public static ArrayList<String> getSections(String tableString){
@@ -66,22 +75,42 @@ class BasicTableParse {
             }
             else if(original.charAt(i) == '>') {
                 readingTag = false;
-                stripped.append(',');
                 continue;
             }
             if(readingTag) {
                 continue;
             }
-            if(original.charAt(i) != '\n' && original.charAt(i) != '\r') stripped.append(original.charAt(i));
+
+            if(original.charAt(i) != '\n' && original.charAt(i) != '\r'){
+                stripped.append(original.charAt(i));
+            } else if(original.charAt(i) == '\n') {
+                stripped.append(',');
+            }
         }
         stripped.replace(0, 4, "");
-        stripped.append('\r');
-        stripped.append('\n');
+        stripped.append("\r\n");
         return String.valueOf(stripped);
     }
 
+    public static String csvFormatting(String str) {
+        StringBuilder sb = new StringBuilder(str);
+        /*
+        for(int i = 0; i < sb.length(); i++) {
+            if(sb.charAt(i) == '\r' || sb.charAt(i) == '\n') {
+                sb.deleteCharAt(i);
+                sb.append(',');
+            }
+        }
+        */
+        sb.append("\r\n");
+
+        //System.out.println(sb.toString());
+
+        return sb.toString();
+    }
+
     public static String fileContents(String path) {
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
 
         try (FileReader f = new FileReader(path);) {
             int nextChar;
@@ -94,7 +123,7 @@ class BasicTableParse {
             System.out.println("Filename not found");
         }
 
-        return String.valueOf(result);
+        return result.toString();
     }
 }
 
