@@ -38,6 +38,9 @@ class BasicTableParse {
             }
         }
 
+        System.out.println(removeTags(sections.get(0)));
+
+        /*
         Pattern isolateContent = Pattern.compile("(<.*?>)");
         for(int i = 0; i < sections.size(); i++) {
             Matcher getContent = isolateContent.matcher(sections.get(i));
@@ -46,10 +49,11 @@ class BasicTableParse {
             sections.set(i, chopped);
             System.out.println(sections.get(i));
         }
+            */
     }
 
     public static String removeTags(String original) {
-        StringBuffer section = new StringBuffer();
+        StringBuilder section = new StringBuilder();
         boolean readingTag = false;
 
         for(int i = 0; i < original.length(); i++) {
@@ -58,6 +62,7 @@ class BasicTableParse {
             }
             else if(original.charAt(i) == '>') {
                 readingTag = false;
+                section.append(',');
                 continue;
             }
             if(readingTag) {
@@ -65,6 +70,8 @@ class BasicTableParse {
             }
             section.append(original.charAt(i));
         }
+        section.replace(0, 4, "");
+        section.append('\n');
         return String.valueOf(section);
     }
 
