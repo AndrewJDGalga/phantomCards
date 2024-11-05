@@ -53,7 +53,7 @@ class BasicTableParse {
     }
 
     public static String removeTags(String original) {
-        StringBuilder section = new StringBuilder();
+        StringBuilder stripped = new StringBuilder();
         boolean readingTag = false;
 
         for(int i = 0; i < original.length(); i++) {
@@ -62,17 +62,17 @@ class BasicTableParse {
             }
             else if(original.charAt(i) == '>') {
                 readingTag = false;
-                section.append(',');
+                stripped.append(',');
                 continue;
             }
             if(readingTag) {
                 continue;
             }
-            section.append(original.charAt(i));
+            stripped.append(original.charAt(i));
         }
-        section.replace(0, 4, "");
-        section.append('\n');
-        return String.valueOf(section);
+        stripped.replace(0, 4, "");
+        stripped.append('\n');
+        return String.valueOf(stripped);
     }
 
     public static String fileContents(String path) {
