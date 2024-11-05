@@ -66,8 +66,16 @@ class BasicTableParse {
     public static String formatSections(String original) {
         StringBuilder stripped = new StringBuilder();
         boolean readingTag = false;
+        boolean readingSpecial = false;
 
         for(int i = 0; i < original.length(); i++) {
+            if(original.charAt(i) == '&'){
+                readingSpecial = true;
+            }else if(original.charAt(i) == ';'){
+                readingSpecial = false;
+                continue;
+            }
+            
             if(original.charAt(i) == '<') {
                 readingTag = true;
             }
@@ -76,7 +84,7 @@ class BasicTableParse {
                 continue;
             }
 
-            if(readingTag) {
+            if(readingTag || readingSpecial) {
                 continue;
             }
 
