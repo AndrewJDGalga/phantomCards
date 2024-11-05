@@ -2,6 +2,7 @@
 **/*
 
 !DataSource/
+!sql/
 !LICENSE
 !README.md
 !.gitignore

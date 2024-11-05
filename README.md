@@ -15,3 +15,5 @@ I like how XHR provides a loading status option. Atm the Fetch API doesn't.
 
 ## Why Phantom Dust?
 I like the game.
+
+*Data sourced from [phantomdust.online](phantondust.online) & the Phantom Dust videogame, Windows version*
