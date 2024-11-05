@@ -1,7 +1,7 @@
 import java.io.FileReader;
 import java.io.FileWriter;
 //import java.lang.reflect.Array;
-import java.awt.Point;
+//import java.awt.Point;
 import java.util.ArrayList;
 
 /* 
@@ -16,18 +16,23 @@ class BasicTableParse {
     public static void main(String[] args) {
         String fileString = fileContents("skillsRaw2.txt");
         ArrayList<String> sections = getSections(fileString);
-        String[] noTags = new String[sections.size()];
+        String[] formatted = new String[sections.size()];
 
         for(int i = 0; i < sections.size(); i++) {
-            noTags[i] = removeTags(sections.get(i));
-            System.out.println(noTags[i]);
+            formatted[i] = formatSections(sections.get(i));
+            
+            //REMOVE
+            System.out.println(formatted[i]);
         }
 
-        writeCSV(noTags);
+        writeCSV(formatted);
     }
 
     public static void writeCSV(String[] src) {
+        String header = "ID,NAME,TYPE,SCHOOL,COST,STR,USE,RANGE,RARITY,DESCRIPTION,HOMING,NOTE\r\n";
+
         try (FileWriter writer = new FileWriter("test.csv")) {
+            writer.write(header);
             for(int i = 0; i < src.length; i++) {
                 writer.write(src[i]);
             }
@@ -58,7 +63,7 @@ class BasicTableParse {
         return sections;
     }
 
-    public static String removeTags(String original) {
+    public static String formatSections(String original) {
         StringBuilder stripped = new StringBuilder();
         boolean readingTag = false;
 
