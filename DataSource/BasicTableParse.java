@@ -84,7 +84,8 @@ class BasicTableParse {
             }
         }
         stripped.replace(0, 2, "");
-        stripped.append("\n");
+        stripped.replace(stripped.length()-2, stripped.length(), "");
+        stripped.append("\r\n");
         return String.valueOf(stripped);
     }
 
