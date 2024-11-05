@@ -16,13 +16,14 @@ class BasicTableParse {
     public static void main(String[] args) {
         String fileString = fileContents("skillsRaw2.txt");
         ArrayList<String> sections = getSections(fileString);
-        
         String[] noTags = new String[sections.size()];
-        
+
         for(int i = 0; i < sections.size(); i++) {
             noTags[i] = removeTags(sections.get(i));
             System.out.println(noTags[i]);
         }
+
+        writeCSV(noTags);
     }
 
     public static void writeCSV(String[] src) {
@@ -69,7 +70,7 @@ class BasicTableParse {
                 readingTag = false;
                 continue;
             }
-            
+
             if(readingTag) {
                 continue;
             }
@@ -77,11 +78,13 @@ class BasicTableParse {
             if(original.charAt(i) != '\n' && original.charAt(i) != '\r'){
                 stripped.append(original.charAt(i));
             } else if(original.charAt(i) == '\n') {
+                stripped.append('"');
                 stripped.append(',');
+                stripped.append('"');
             }
         }
-        stripped.replace(0, 4, "");
-        stripped.append("\r\n");
+        stripped.replace(0, 2, "");
+        stripped.append("\n");
         return String.valueOf(stripped);
     }
 
