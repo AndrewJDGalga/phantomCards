@@ -1,7 +1,6 @@
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
-
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
@@ -21,9 +20,6 @@ class BasicTableParse {
 
         for(int i = 0; i < sections.size(); i++) {
             formatted[i] = formatSections(sections.get(i));
-            
-            //REMOVE
-            //System.out.println(formatted[i]);
         }
 
         for(int i = 0; i < formatted.length; i++) {
@@ -32,9 +28,6 @@ class BasicTableParse {
             formatted[i] = m.replaceAll("");
             System.out.println(formatted[i]);    
         }
-        //Pattern p = Pattern.compile("(,\"\")");
-        //Matcher m = p.matcher(formatted[0]);
-        //System.out.println(m.replaceAll(""));
 
         writeCSV(formatted);
     }
@@ -82,10 +75,8 @@ class BasicTableParse {
         for(int i = 0; i < original.length(); i++) {
             if(original.charAt(i) == '&'){
                 readingSpecial = true;
-                //System.out.println(original.charAt(i-1));
             }else if(original.charAt(i) == ';'){
                 readingSpecial = false;
-                //System.out.println(original.charAt(i+1));
                 continue;
             }
 
