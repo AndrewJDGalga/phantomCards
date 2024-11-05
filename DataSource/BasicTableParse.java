@@ -18,6 +18,14 @@ class BasicTableParse {
     public static void main(String[] args) {
         String fileString = fileContents("skillsRaw2.txt");
         ArrayList<String> sections = getSections(fileString);
+        
+        String[] cleaned = new String[sections.size()];
+        
+        for(int i = 0; i < sections.size(); i++) {
+            cleaned[i] = removeTags(sections.get(i));
+            System.out.println(cleaned[i]);
+        }
+        
     }
 
     public static ArrayList<String> getSections(String tableString){
