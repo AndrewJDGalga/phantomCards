@@ -1,10 +1,8 @@
 import java.io.FileReader;
-import java.lang.reflect.Array;
+import java.io.FileWriter;
+//import java.lang.reflect.Array;
 import java.awt.Point;
 import java.util.ArrayList;
-
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
 
 /* 
  *Description:
@@ -26,6 +24,14 @@ class BasicTableParse {
             System.out.println(cleaned[i]);
         }
         
+        try (FileWriter writer = new FileWriter("test.csv")) {
+            for(int i = 0; i < cleaned.length; i++) {
+                writer.write(cleaned[i]);
+            }
+        } catch (Exception e) {
+            System.out.println("Failed with: " + e);
+        }
+
     }
 
     public static ArrayList<String> getSections(String tableString){
@@ -66,9 +72,10 @@ class BasicTableParse {
             if(readingTag) {
                 continue;
             }
-            stripped.append(original.charAt(i));
+            if(original.charAt(i) != '\n' && original.charAt(i) != '\r') stripped.append(original.charAt(i));
         }
         stripped.replace(0, 4, "");
+        stripped.append('\r');
         stripped.append('\n');
         return String.valueOf(stripped);
     }
