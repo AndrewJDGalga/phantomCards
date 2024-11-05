@@ -1,5 +1,5 @@
 import java.io.FileReader;
-
+import java.lang.reflect.Array;
 import java.awt.Point;
 import java.util.ArrayList;
 
@@ -17,13 +17,15 @@ import java.util.regex.Matcher;
 class BasicTableParse {
     public static void main(String[] args) {
         String fileString = fileContents("skillsRaw2.txt");
+        ArrayList<String> sections = getSections(fileString);
+    }
+
+    public static ArrayList<String> getSections(String tableString){
         int start = -1, end = -1;
         ArrayList<String> sections = new ArrayList<String>();
-
-        //obtain sections
-        for(int i = 0; i < fileString.length(); i++) {
-            if(fileString.charAt(i) == '<') {
-                String slice = fileString.substring(i, i+4);
+        for(int i = 0; i < tableString.length(); i++) {
+            if(tableString.charAt(i) == '<') {
+                String slice = tableString.substring(i, i+4);
                 if(slice.compareTo("<tr ") == 0) {
                     start = i;
                 }
@@ -31,25 +33,13 @@ class BasicTableParse {
                     end = i;
                 }
                 if(start != -1 && end != -1) {
-                    sections.add(fileString.substring(start, end));
+                    sections.add(tableString.substring(start, end));
                     start = -1;
                     end = -1;
                 }
             }
         }
-
-        System.out.println(removeTags(sections.get(0)));
-
-        /*
-        Pattern isolateContent = Pattern.compile("(<.*?>)");
-        for(int i = 0; i < sections.size(); i++) {
-            Matcher getContent = isolateContent.matcher(sections.get(i));
-            String raw = getContent.replaceAll(",");
-            String chopped = raw.substring(4, raw.length());
-            sections.set(i, chopped);
-            System.out.println(sections.get(i));
-        }
-            */
+        return sections;
     }
 
     public static String removeTags(String original) {
