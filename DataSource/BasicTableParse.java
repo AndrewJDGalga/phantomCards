@@ -38,16 +38,14 @@ class BasicTableParse {
             }
         }
 
-        //System.out.println(sections.get(0));
         Pattern isolateContent = Pattern.compile("(<.*?>)");
-        Matcher getContent = isolateContent.matcher(sections.get(0));
-        String temp = getContent.replaceAll(",");
-        String chopped = temp.substring(4, temp.length());
-        //System.out.println(chopped);
-        //System.out.println(getContent.replaceAll(","));
-        sections.set(0, chopped);
-        System.out.println(sections.get(0));
-        
+        for(int i = 0; i < sections.size(); i++) {
+            Matcher getContent = isolateContent.matcher(sections.get(i));
+            String raw = getContent.replaceAll(",");
+            String chopped = raw.substring(4, raw.length());
+            sections.set(i, chopped);
+            System.out.println(sections.get(i));
+        }
     }
 
     public static String removeTags(String original) {
