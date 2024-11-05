@@ -3,7 +3,13 @@ import java.io.FileReader;
 class CSVToSQL {
     public static void main(String[] args) {
         String fileString = fileContents("test.csv");
-        System.out.println(fileString);
+
+        int headerEnd = fileString.indexOf('\n');
+        String header = fileString.substring(0, headerEnd);
+        String minusHead = fileString.substring(headerEnd, fileString.length());
+        //System.out.println(header);
+
+        
     }
 
     public static String fileContents(String path) {
