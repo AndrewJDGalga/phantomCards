@@ -23,14 +23,6 @@ class BasicTableParse {
             noTags[i] = removeTags(sections.get(i));
             System.out.println(noTags[i]);
         }
-        
-        /* 
-        for(int i = 0; i < noTags.length; i++){
-            noTags[i] = csvFormatting(noTags[i]);
-            System.out.println(noTags[i]);
-        }
-            */
-
     }
 
     public static void writeCSV(String[] src) {
@@ -77,6 +69,7 @@ class BasicTableParse {
                 readingTag = false;
                 continue;
             }
+            
             if(readingTag) {
                 continue;
             }
@@ -90,23 +83,6 @@ class BasicTableParse {
         stripped.replace(0, 4, "");
         stripped.append("\r\n");
         return String.valueOf(stripped);
-    }
-
-    public static String csvFormatting(String str) {
-        StringBuilder sb = new StringBuilder(str);
-        /*
-        for(int i = 0; i < sb.length(); i++) {
-            if(sb.charAt(i) == '\r' || sb.charAt(i) == '\n') {
-                sb.deleteCharAt(i);
-                sb.append(',');
-            }
-        }
-        */
-        sb.append("\r\n");
-
-        //System.out.println(sb.toString());
-
-        return sb.toString();
     }
 
     public static String fileContents(String path) {
