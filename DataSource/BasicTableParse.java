@@ -3,6 +3,9 @@ import java.io.FileReader;
 import java.awt.Point;
 import java.util.ArrayList;
 
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+
 /* 
  *Description:
     Simple program to parse table body extracted from browser.
@@ -17,6 +20,7 @@ class BasicTableParse {
         int start = -1, end = -1;
         ArrayList<String> sections = new ArrayList<String>();
 
+        //obtain sections
         for(int i = 0; i < fileString.length(); i++) {
             if(fileString.charAt(i) == '<') {
                 String slice = fileString.substring(i, i+4);
@@ -34,7 +38,12 @@ class BasicTableParse {
             }
         }
 
-        System.out.println(sections.get(0));
+        //System.out.println(sections.get(0));
+        Pattern isolateContent = Pattern.compile("(<.*?>)");
+        Matcher getContent = isolateContent.matcher(sections.get(0));
+        System.out.println(getContent.replaceAll(","));
+
+        
     }
 
     public static String removeTags(String original) {
