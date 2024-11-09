@@ -4,12 +4,16 @@ class CSVToSQL {
     public static void main(String[] args) {
         String fileString = fileContents("test.csv");
 
-        int headerEnd = fileString.indexOf('\n');
-        String header = fileString.substring(0, headerEnd);
-        String minusHead = fileString.substring(headerEnd, fileString.length());
-        //System.out.println(header);
-
+        int headEnd = fileString.indexOf('\n');
+        String head = fileString.substring(0, headEnd);
+        String minusHead = fileString.substring(headEnd, fileString.length());
         
+        String[] brokenHead = head.split(",");
+        
+        for(int i = 0; i < brokenHead.length; i++) {
+
+            System.out.println(brokenHead[i]);
+        }
     }
 
     public static String fileContents(String path) {
