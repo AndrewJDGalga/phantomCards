@@ -1,4 +1,5 @@
 import java.io.FileReader;
+import java.util.Arrays;
 
 class CSVToSQL {
     public static void main(String[] args) {
@@ -18,14 +19,17 @@ class CSVToSQL {
         brokenHead[6] += " VARCHAR(8) NOT NULL"; //USE can be INF
         brokenHead[7] += " VARCHAR(16) NOT NULL";
         brokenHead[8] = brokenHead[9] + " VARCHAR(64)"; //Don't care about rarity
-        brokenHead[9] =  "HOMING" + " INT";
-        //System.out.println(brokenHead[0]); 
-
+        brokenHead[9] =  "HOMING INT";
+        
+        String header = "";
         
         for(int i = 0; i < brokenHead.length-1; i++) {
-            System.out.println(brokenHead[i]);
+            header += brokenHead[i];
+            if(i >= 9) break;
+            header += ",";
         }
         
+        System.out.println(header);
     }
 
     public static String fileContents(String path) {
