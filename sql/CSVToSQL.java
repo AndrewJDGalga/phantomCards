@@ -9,11 +9,23 @@ class CSVToSQL {
         String minusHead = fileString.substring(headEnd, fileString.length());
         
         String[] brokenHead = head.split(",");
-        
-        for(int i = 0; i < brokenHead.length; i++) {
+        brokenHead[0] += " INT PRIMARY KEY";
+        brokenHead[1] += " VARCHAR(64) NOT NULL";
+        brokenHead[2] += " VARCHAR(32) NOT NULL";
+        brokenHead[3] += " VARCHAR(32) NOT NULL";
+        brokenHead[4] += " VARCHAR(8) NOT NULL"; //cost can be X
+        brokenHead[5] += " VARCHAR(8)"; //STR can be X || NULL
+        brokenHead[6] += " VARCHAR(8) NOT NULL"; //USE can be INF
+        brokenHead[7] += " VARCHAR(16) NOT NULL";
+        brokenHead[8] = brokenHead[9] + " VARCHAR(64)"; //Don't care about rarity
+        brokenHead[9] =  "HOMING" + " INT";
+        //System.out.println(brokenHead[0]); 
 
+        
+        for(int i = 0; i < brokenHead.length-1; i++) {
             System.out.println(brokenHead[i]);
         }
+        
     }
 
     public static String fileContents(String path) {
