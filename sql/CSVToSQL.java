@@ -4,7 +4,13 @@ import java.util.Arrays;
 class CSVToSQL {
     public static void main(String[] args) {
         String fileString = fileContents("test.csv");
+        String headerQuery = createSQLTableQuery(fileString);
+        
+        
+        System.out.println(headerQuery);
+    }
 
+    static String createSQLTableQuery(String fileString) {
         int headEnd = fileString.indexOf('\n');
         String head = fileString.substring(0, headEnd);
         String minusHead = fileString.substring(headEnd, fileString.length());
@@ -28,11 +34,11 @@ class CSVToSQL {
             header += ",";
         }
         header += ");";
-        
-        System.out.println(header);
+
+        return header;
     }
 
-    public static String fileContents(String path) {
+    static String fileContents(String path) {
         StringBuilder result = new StringBuilder();
 
         try (FileReader f = new FileReader(path);) {
