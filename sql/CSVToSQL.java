@@ -4,17 +4,20 @@ import java.util.Arrays;
 class CSVToSQL {
     public static void main(String[] args) {
         String fileString = fileContents("test.csv");
-        String headerQuery = createSQLTableQuery(fileString);
-        
-        
-        System.out.println(headerQuery);
-    }
-
-    static String createSQLTableQuery(String fileString) {
         int headEnd = fileString.indexOf('\n');
         String head = fileString.substring(0, headEnd);
+        head = head.replace("RARITY,","");
         String minusHead = fileString.substring(headEnd, fileString.length());
+        String headerQuery = createSQLTableQuery(head);
         
+        String valueInsertQuery = "insert into skills(" + minusHead + ") values(";
+
+        
+        
+        System.out.println(head);
+    }
+
+    static String createSQLTableQuery(String head) {
         String[] brokenHead = head.split(",");
         brokenHead[0] += " INT PRIMARY KEY";
         brokenHead[1] += " VARCHAR(64) NOT NULL";
@@ -28,7 +31,7 @@ class CSVToSQL {
         brokenHead[9] =  "HOMING INT";
         
         String header = "use phantom_dust;\ncreate table if not exists skills(";
-        for(int i = 0; i < brokenHead.length-1; i++) {
+        for(int i = 0; i < brokenHead.length; i++) {
             header += brokenHead[i];
             if(i >= 9) break;
             header += ",";
