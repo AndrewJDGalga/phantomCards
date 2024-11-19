@@ -21,13 +21,13 @@ class CSVToSQL {
         brokenHead[8] = brokenHead[9] + " VARCHAR(64)"; //Don't care about rarity
         brokenHead[9] =  "HOMING INT";
         
-        String header = "";
-        
+        String header = "use phantom_dust;\ncreate table if not exists skills(";
         for(int i = 0; i < brokenHead.length-1; i++) {
             header += brokenHead[i];
             if(i >= 9) break;
             header += ",";
         }
+        header += ");";
         
         System.out.println(header);
     }
