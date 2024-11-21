@@ -12,8 +12,22 @@ class CSVToSQL {
         
         StringBuffer valueInsertQuery = new StringBuffer("insert into skills(");
         valueInsertQuery.append(head);
-        valueInsertQuery.insert(valueInsertQuery.length()-1, ')');
+        valueInsertQuery.insert(valueInsertQuery.length()-1, ") value(");
 
+        StringBuffer test = new StringBuffer();
+        for(int i = 0; i < minusHead.length(); i++){
+            test.append(minusHead.charAt(i));
+            if(minusHead.charAt(i) == '\n' && i > 0) {
+                test.delete(test.length()-3, test.length());
+                //test.deleteCharAt(test.length()-3);
+                test.append("), (");
+                //System.out.println("Test: " + test);
+                valueInsertQuery.append(test);
+                break;
+            }
+        }
+        
+        //valueInsertQuery.append(minusHead);
         System.out.println(valueInsertQuery);
     }
 
