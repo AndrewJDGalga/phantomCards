@@ -10,11 +10,11 @@ class CSVToSQL {
         String minusHead = fileString.substring(headEnd, fileString.length());
         String headerQuery = createSQLTableQuery(head);
         
-        String valueInsertQuery = "insert into skills(" + minusHead + ") values(";
+        StringBuffer valueInsertQuery = new StringBuffer("insert into skills(");
+        valueInsertQuery.append(head);
+        valueInsertQuery.insert(valueInsertQuery.length()-1, ')');
 
-        
-        
-        System.out.println(head);
+        System.out.println(valueInsertQuery);
     }
 
     static String createSQLTableQuery(String head) {
