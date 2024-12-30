@@ -6,6 +6,9 @@
 !front/
 !src/
 !public/
+!assets/
+!components/
+!styling/
 
 !LICENSE
 !README.md
