@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import '../styling/index.css'
+import SkillTable from './SkillTable';
 
 const testObjects = [
   {
@@ -72,7 +73,8 @@ function App() {
 
   return (
     <>
-      <h1>Base</h1>
+      <h1>TODO: Table</h1>
+      <SkillTable></SkillTable>
     </>
   )
 }
