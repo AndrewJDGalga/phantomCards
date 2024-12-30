@@ -65,7 +65,7 @@ const testObjects = [
   },
 ]
 
-const testHeaders = 'ID,NAME,TYPE,SCHOOL,COST,STR,USE,RANGE,HOMING';
+const testHeaders = ['ID','NAME','TYPE','SCHOOL','COST','STR','USE','RANGE','HOMING', 'DESCRIPTION'];
 
 
 function App() {
@@ -74,7 +74,7 @@ function App() {
   return (
     <>
       <h1>TODO: Table</h1>
-      <SkillTable></SkillTable>
+      <SkillTable tableHeaders={testHeaders}></SkillTable>
     </>
   )
 }
