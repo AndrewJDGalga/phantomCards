@@ -2,7 +2,8 @@
 function SkillTable({tableHeaders, tableRows}) {
     const headers = tableHeaders.map(name=>
         <th key={name}>
-            <button>{name}</button>
+            {(name !== "DESCRIPTION") && <button>{name}</button>}
+            {(name === "DESCRIPTION") && <th>{name}</th>}
         </th>
     );
 
