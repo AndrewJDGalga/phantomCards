@@ -4,10 +4,21 @@
 !DataSource/
 !sql/
 !front/
+!src/
+!public/
 
 !LICENSE
 !README.md
 !.gitignore
+!eslint.config.js
+!package-lock.json
+!package.json
+!vite.config.js
+
 !BasicTableParse.java
 !CSVToSQL.java
 !*.sql
+!*.html
+!*.css
+!*.js
+!*.jsx
