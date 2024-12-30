@@ -6,13 +6,11 @@ function SkillTable({tableHeaders}) {
     <table>
         <thead>
             <tr>
-                {tableHeaders.map(name=>{
-                    return (
-                        <th>
-                            <button>{name}</button>
-                        </th>               
-                    )
-                })}
+                {tableHeaders.map(name=>
+                    <th key={name}>
+                        <button>{name}</button>
+                    </th>
+                )}
             </tr>
         </thead>
         <tbody>
