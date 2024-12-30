@@ -74,7 +74,7 @@ function App() {
   return (
     <>
       <h1>TODO: Table</h1>
-      <SkillTable tableHeaders={testHeaders}></SkillTable>
+      <SkillTable tableHeaders={testHeaders} tableRows={testObjects}></SkillTable>
     </>
   )
 }
