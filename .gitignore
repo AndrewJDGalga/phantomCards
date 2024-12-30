@@ -1,0 +1,11 @@
+*
+**/*
+
+!DataSource/
+!sql/
+!LICENSE
+!README.md
+!.gitignore
+!BasicTableParse.java
+!CSVToSQL.java
+!*.sql
