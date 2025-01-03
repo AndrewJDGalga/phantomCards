@@ -1,24 +1,19 @@
+import { useState } from "react";
+import SkillFilterButton from "./SkillFilterButton";
 
 function SkillTable({tableHeaders, tableRows}) {
+    const [column, setColumn] = useState(0);
+    const [ascending, setAscending] = useState(true);
+    
     const headers = [];
     for(let i = 0; i < tableHeaders.length; i++){
         headers.push(
             <th key={tableHeaders[i]}>
-            {(tableHeaders[i] !== "DESCRIPTION") && <button>{tableHeaders[i]}</button>}
+            {(tableHeaders[i] !== "DESCRIPTION") && <SkillFilterButton col={i} content={tableHeaders[i]}></SkillFilterButton>}
             {(tableHeaders[i] === "DESCRIPTION") && <th>{tableHeaders[i]}</th>}
         </th>
         );
     }
-    
-    /*
-    const headers = tableHeaders.map(name=>
-        <th key={name}>
-            {(name !== "DESCRIPTION") && <button>{name}</button>}
-            {(name === "DESCRIPTION") && <th>{name}</th>}
-        </th>
-    );
-    */
-
     const rows = tableRows.map(row=>
         <tr key={row.id}>
             <td>{row.id}</td>
