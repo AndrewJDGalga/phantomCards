@@ -1,11 +1,23 @@
 
 function SkillTable({tableHeaders, tableRows}) {
+    const headers = [];
+    for(let i = 0; i < tableHeaders.length; i++){
+        headers.push(
+            <th key={tableHeaders[i]}>
+            {(tableHeaders[i] !== "DESCRIPTION") && <button>{tableHeaders[i]}</button>}
+            {(tableHeaders[i] === "DESCRIPTION") && <th>{tableHeaders[i]}</th>}
+        </th>
+        );
+    }
+    
+    /*
     const headers = tableHeaders.map(name=>
         <th key={name}>
             {(name !== "DESCRIPTION") && <button>{name}</button>}
             {(name === "DESCRIPTION") && <th>{name}</th>}
         </th>
     );
+    */
 
     const rows = tableRows.map(row=>
         <tr key={row.id}>
